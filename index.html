@@ -518,8 +518,13 @@
 			position: relative;
 			display: inline-flex;
 			align-items: center;
-			width: 6.5em;
 			height: 1.375em;
+			padding-inline-end: 2.875em;
+		}
+
+		[dir="rtl"] .slider{
+			right: auto;
+			left: 0;
 		}
 
 		.slider {
@@ -545,6 +550,7 @@
 			background: var(--color-white);
 			transition: .1s;
 		}
+
 
 
 		input[type="checkbox"].diff:checked+.code-example>.header>label>.slider {
