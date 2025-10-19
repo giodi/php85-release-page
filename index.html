@@ -20,9 +20,7 @@
 		}
 
 		:target {
-			scroll-margin-block: 5ex;
-			background: var(--color-dark-magenta);
-			color: var(--color-white);
+			scroll-margin-block: 1rem;
 		}
 
 		::selection {
@@ -101,21 +99,21 @@
 		}
 
 		h1 {
-			font-size: 3rem;
+			font-size: 2.5rem;
 		}
 
 		h2 {
-			font-size: 2.4082rem;
+			font-size: 1.842rem;
 		}
 
 		h3 {
-			font-size: 1.9332rem;
+			font-size: 1.3572rem;
 		}
 
 		h4,
 		h5,
 		h6 {
-			font-size: 1.5518rem;
+			font-size: 1.25rem;
 		}
 
 		code {
@@ -146,20 +144,20 @@
 
 		nav.toc .inner {
 			position: sticky;
-			top: 1em;
+			top: 1rem;
 		}
 
 		nav.toc ol {
 			list-style: none;
 			padding: 0;
-			border-inline-start: .125em solid var(--color-dark-blue);
+			border-inline-start: .125rem solid var(--color-dark-blue);
 		}
 
 		nav.toc a {
 			text-decoration: none;
 			display: inline-block;
-			padding-inline-start: 1em;
-			padding-top: 1em;
+			padding-inline-start: 1rem;
+			padding-top: .75rem;
 		}
 
 		nav.toc li.active {
@@ -284,9 +282,7 @@
 		.code-example>.header {
 			background: var(--bg);
 			padding: 1rem;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+			text-align: right;
 			border-radius: var(--border-radius) var(--border-radius) 0 0;
 		}
 
@@ -298,7 +294,7 @@
 
 		.code-example>div>code {
 			background: var(--bg);
-			padding: var(--padding) 0;
+			padding: 0 0 var(--padding) 0;
 			display: block;
 			min-width: max-content;
 			overflow-x: scroll;
@@ -308,7 +304,7 @@
 		.code-example>div>code div.line {
 			display: block;
 			width: 100%;
-			padding: 0 var(--inner-padding);
+			padding: 0 .75rem;
 			text-wrap: nowrap;
 		}
 
@@ -411,7 +407,7 @@
 
 		nav.navbar {
 			--navbar-height: 4rem;
-			--navbar-padding: .75rem;
+			--navbar-padding: var(--inner-padding);
 			position: relative;
 			height: var(--navbar-height);
 			overflow: hidden;
@@ -422,12 +418,14 @@
 		nav.navbar>.inner {
 			display: grid;
 			grid-template-columns: auto auto auto;
-			padding: 0;
+			padding: 0 var(--navbar-padding);
 		}
 
 		nav.navbar>.inner>.logo {
-			padding: var(--navbar-padding) 0;
 			width: 100%;
+			min-width: 100%;
+			display: inline-flex;
+			align-items: center;
 		}
 
 		nav.navbar>.inner>.logo>img {
@@ -499,7 +497,7 @@
 			color: hsl(225, 41%, 69%);
 		}
 
-		ul[role="list"] {
+		ul[role="list"]{
 			padding-inline-start: 1rem;
 			list-style: square;
 		}
@@ -510,8 +508,29 @@
 
 		ul>li {
 			line-height: 1.5;
-			margin-top: .5em;
+			margin-top: .25em;
 		}
+
+		/*
+		ul.rfc{
+			list-style: none;
+		}
+
+		ul.rfc li{
+			background: #fff;
+			border: 1px solid var(--color-dark-blue);
+		}
+		
+		ul.rfc li:before{
+			content: "RFC";
+			font-family: var(--ff-monospace);
+			background: var(--color-dark-blue);
+			color: var(--color-white);
+			padding: .25rem .5rem;
+			margin-inline-end: .5rem;
+			border-radius: .25rem;
+		}
+		*/
 
 		.switch {
 			user-select: none;
@@ -551,8 +570,6 @@
 			transition: .1s;
 		}
 
-
-
 		input[type="checkbox"].diff:checked+.code-example>.header>label>.slider {
 			background-color: var(--color-dark-blue);
 		}
@@ -590,15 +607,41 @@
 
 		}
 
+		a.top{display: none}
+
 		@media(max-width: 809px) {
 
+			a.top{
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				position: fixed;
+				bottom: 1rem;
+				right: 1rem;
+				width: 3rem;
+				height: 3rem;
+				background: var(--color-dark-blue);
+				color: var(--color-white);
+				border-radius: 50%;
+				text-decoration: none;
+				box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+			}
+
+			.hide-md{
+				display: none;
+			}
+
 			:root {
-				--inner-padding: 1.5rem;
+				--inner-padding: 2rem;
 				font-size: 14px;
 			}
 
 			.col+.col {
 				margin-top: 4rem;
+			}
+
+			.hero{
+				padding: 3rem var(--inner-padding);
 			}
 
 			.hero .inner.cols,
@@ -607,7 +650,14 @@
 			}
 
 			.code-example {
+				--border-radius: 0;
 				--padding: var(--inner-padding);
+
+			}
+
+			.code-example > div > code div.line {
+				padding: 0 var(--inner-padding);
+				
 			}
 
 			main>.content {
@@ -698,7 +748,7 @@
 							8.5 now!</a>
 					</p>
 				</div>
-				<div class="col">
+				<div class="col hide-md">
 					<img src="logo_php8_5.svg" alt="Logo PHP 8.5">
 				</div>
 			</div>
@@ -747,16 +797,16 @@
 						<p>The secure and standards-compliant URI parsing is powered by the <a
 								href="https://uriparser.github.io/">uriparser</a> (RFC 3986) and <a
 								href="https://lexbor.com/">Lexbor</a> (WHATWG URL) libraries.</p>
-						<ul role="list">
+						<ul role="list" class="rfc">
 							<li><a href="https://wiki.php.net/rfc/url_parsing_api"
-									title="PHP RFC: Add RFC 3986 and WHATWG URL compliant API.">PHP RFC: Add RFC 3986
+									title="Add RFC 3986 and WHATWG URL compliant API.">Add RFC 3986
 									and WHATWG URL compliant API</a></li>
 						</ul>
 
 						<input type="checkbox" role="switch" class="diff" id="example-new-uri">
 						<div class="code-example">
 							<div class="header">
-								<h3>Example</h3>
+								
 								<label for="example-new-uri" class="switch">
 									<span>PHP <&thinsp;8.5</span>
 											<span class="slider"></span>
@@ -781,10 +831,13 @@
 						<p>It is now possible to update properties during object cloning by passing an associative array
 							with the updated to the <code>clone()</code> function. This enables straight-forward support
 							of the "with-er" pattern for <code>readonly</code> classes.</p>
+							<ul role="list" class="rfc">
+								<li><a href="https://wiki.php.net/rfc/clone_with_v2">Clone with v2</a></li>
+							</ul>
 						<input type="checkbox" role="switch" class="diff" id="example-clone">
 						<div class="code-example">
 							<div class="header">
-								<h3>Example</h3>
+								
 								<label for="example-clone" class="switch">
 									<span>PHP <&thinsp;8.5</span>
 											<span class="slider"></span>
@@ -827,11 +880,13 @@
 
 					<article>
 						<h2 id="Pipe-operator">Pipe operator<a aria-hidden class="skip" href="#Pipe-operator">#</a></h2>
-
+						<ul role="list" class="rfc">
+								<li><a href="https://wiki.php.net/rfc/pipe-operator-v3">Pipe operator v3</a></li>
+							</ul>
 						<input type="checkbox" role="switch" class="diff" id="example-pipe">
 						<div class="code-example">
 							<div class="header">
-								<h3>Example</h3>
+								
 								<label for="example-pipe" class="switch">
 									<span>PHP <&thinsp;8.5</span>
 											<span class="slider"></span>
@@ -873,10 +928,13 @@
 						</p>
 						<p>The associated <code>(void)</code> cast can be used to indicate that a value is intentionally
 							unused.</p>
+							<ul role="list" class="rfc">
+								<li><a href="https://wiki.php.net/rfc/marking_return_value_as_important">Marking return values as important (#[\NoDiscard])</a></li>
+							</ul>
 						<input type="checkbox" role="switch" class="diff" id="example-discard">
 						<div class="code-example">
 							<div class="header">
-								<h3>Example</h3>
+								
 								<label for="example-discard" class="switch">
 									<span>PHP <&thinsp;8.5</span>
 											<span class="slider"></span>
@@ -901,10 +959,16 @@
 						<h2 id="Closures-and-First-Class-Callables-in-Constant-Expressions">Closures and First Class
 							Callables in Constant Expressions <a aria-hidden class="skip"
 								href="#Closures-and-First-Class-Callables-in-Constant-Expressions">#</a></h2>
+								<ul role="list" class="rfc">
+								<li><a href="https://wiki.php.net/rfc/fcc_in_const_expr">First Class Callables in constant expressions</a>
+								</li>
+								<li><a href="https://wiki.php.net/rfc/closures_in_const_expr">Support Closures in constant expressions</a>
+								</li>
+							</ul>
 						<input type="checkbox" role="switch" class="diff" id="example-closures">
 						<div class="code-example">
 							<div class="header">
-								<h3>Example</h3>
+								
 								<label for="example-closures" class="switch">
 									<span>PHP <&thinsp;8.5</span>
 											<span class="slider"></span>
@@ -969,10 +1033,16 @@
 							New <code>CurlSharePersistentHandle</code> class, <code>curl_multi_get_handles()</code>,
 							<code>curl_share_init_persistent()</code> functions are available.
 						</p>
+						<ul role="list" class="rfc">
+								<li><a href="https://wiki.php.net/rfc/curl_share_persistence">Add persistent curl share handles</a>
+								</li>
+								<li><a href="https://wiki.php.net/rfc/curl_share_persistence_improvement">Persistent curl share handle improvement</a>
+								</li>
+							</ul>
 						<input type="checkbox" class="diff" id="example-curl" role="switch">
 						<div class="code-example">
 							<div class="header">
-								<h3>Example</h3>
+								
 								<label for="example-curl" class="switch">
 									<span>PHP <&thinsp;8.5</span>
 											<span class="slider"></span>
@@ -1007,11 +1077,14 @@
 							New <code>CurlSharePersistentHandle</code> class, <code>curl_multi_get_handles()</code>,
 							<code>curl_share_init_persistent()</code> functions are available.
 						</p>
+						<ul role="list" class="rfc">
+							<li><a href="https://wiki.php.net/rfc/array_first_last">array_first() and array_last()</a></li>
+						</ul>
 
 						<input type="checkbox" class="diff" id="example-array" role="switch">
 						<div class="code-example">
 							<div class="header">
-								<h3>Example</h3>
+								
 								<label for="example-array" class="switch">
 									<span>PHP <&thinsp;8.5</span>
 											<span class="slider"></span>
@@ -1135,6 +1208,7 @@
 					<option>German</option>
 				</select>
 			</label>
+			<a href="#contents" class="top"><span class="sr-only">Go to top.</span>⮝</a>
 		</div>
 	</footer>
 </body>
