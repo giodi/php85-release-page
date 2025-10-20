@@ -10,14 +10,17 @@
 			--ff-sans-serif: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
 			--ff-display: var(--ff-sans-serif);
 			--ff-monospace: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-			--color-white: #f8f8f8;
+			--color-white: #f2f2f2;
 			--color-gray: #333;
 			--color-dark-blue: #4F5B93;
 			--color-dark-magenta: #793862;
+			--color-dark: #2c2c2c;
 			--inner-padding: 2rem;
 			--code-indent: 2.2em;
 			--wrapper-width: 75em;
 		}
+
+
 
 		:target {
 			scroll-margin-block: 1rem;
@@ -59,6 +62,7 @@
 			color: currentColor;
 		}
 
+		label,
 		li,
 		code,
 		p {
@@ -135,6 +139,21 @@
 		select {
 			font-family: inherit;
 			font-size: inherit;
+		}
+
+		select {
+			background: #404f82;
+			color: #fff;
+			border: 1px solid #6a78be;
+			border-radius: .5rem;
+			padding: .25rem .5rem;
+
+		}
+
+		select.lang{
+			border: 1px solid #fff;
+			background: var(--color-gray);
+			margin-inline-start: .25rem;
 		}
 
 		.inner {
@@ -225,6 +244,8 @@
 			font-size: 1.5rem;
 		}
 
+		
+
 		.content .cols {
 			display: grid;
 			grid-template-columns: minmax(0, 39%) minmax(0, 61%);
@@ -232,11 +253,32 @@
 			gap: 1em;
 		}
 
+		#search-dialog {
+			background: var(--color-gray);
+			color: #fff;
+			border: unset;
+			width: 100vw;
+			height: 100vh;
+		}
+
+		.search-modal__close {
+			padding: 8px;
+			margin-right: -8px;
+			margin-left: 8px;
+			color: #e8e8e8;
+			cursor: pointer;
+			background-color: transparent;
+			border: 0;
+			outline: 0;
+			opacity: 0.65;
+			transition: opacity 0.15s ease-out;
+		}
+
 		a.btn {
 			display: inline-block;
 			text-decoration: none;
 			border-radius: .5em;
-			padding: .5em 1em;
+			padding: .5rem 1rem;
 			background: #fff;
 			color: #000;
 			--tw-inset-shadow: 0 0 #000;
@@ -247,6 +289,19 @@
 			box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 		}
 
+		a{
+			text-underline-offset: .375rem;
+		}
+
+		footer a{
+			text-decoration: none;
+		}
+
+		footer a:focus,
+		footer a:hover{
+			text-decoration: underline;
+		}
+
 		a.btn:hover,
 		a.btn:focus {
 			text-decoration: underline;
@@ -255,7 +310,6 @@
 		h2>a.skip {
 			color: #000;
 			opacity: 0;
-			padding-inline-start: .25rem;
 		}
 
 		h2:hover>a.skip,
@@ -274,19 +328,35 @@
 			--padding: 1rem;
 			--bg: #fff;
 			--border-radius: .25rem;
-			box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+			box-shadow: 0 0 0 1px rgba(0, 0, 0, .15);
 			border-radius: var(--border-radius);
 			margin-top: 1em;
 		}
 
 		.code-example>.header {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
 			background: var(--bg);
 			padding: 1rem;
 			text-align: right;
 			border-radius: var(--border-radius) var(--border-radius) 0 0;
 		}
 
-		.code-example>div{
+		.code-example>.header>div:first-child{
+			text-align: left;
+		}
+
+		.code-example>.header>div:first-child label{
+
+			background: var(--color-dark-blue);
+			color: var(--color-white);
+			padding: .5rem;
+
+		}
+
+
+
+		.code-example>div {
 			background: var(--bg);
 			overflow-x: scroll;
 			border-radius: 0 0 var(--border-radius) var(--border-radius);
@@ -369,23 +439,10 @@
 			content: "-\00a0";
 		}
 
-		.code-example>div>code div.line:before {
+		input[type="checkbox"].diff:checked+.code-example>div>code div.line:before {
 			content: "\00a0\00a0";
 		}
 
-		.code-example>.header>label>span.hide {
-			display: none;
-		}
-
-		.code-example h3 {
-			font-size: 1em;
-			margin: 0;
-		}
-
-		.code-example>.header>h3+code {
-			margin-top: 0;
-
-		}
 
 		.sr-only {
 			position: absolute;
@@ -396,29 +453,21 @@
 			overflow: hidden;
 		}
 
-		.headsup {
-			text-align: center;
-			padding: .25rem 0;
-			height: 1.5rem;
-			box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .2);
-			background-color: var(--color-dark-magenta);
-			color: #fff;
-		}
-
 		nav.navbar {
 			--navbar-height: 4rem;
 			--navbar-padding: var(--inner-padding);
-			position: relative;
 			height: var(--navbar-height);
 			overflow: hidden;
 			background: var(--color-dark-blue);
 			box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.2);
+			position: relative;
+			padding: 0 var(--navbar-padding);
 		}
 
 		nav.navbar>.inner {
 			display: grid;
 			grid-template-columns: auto auto auto;
-			padding: 0 var(--navbar-padding);
+			
 		}
 
 		nav.navbar>.inner>.logo {
@@ -497,9 +546,26 @@
 			color: hsl(225, 41%, 69%);
 		}
 
-		ul[role="list"]{
-			padding-inline-start: 1rem;
-			list-style: square;
+		ul[role="list"] {
+			list-style: none;
+		}
+
+		ul[role="list"] li{
+			position: relative;
+			padding-inline-start: 1em;
+
+		}
+
+		ul[role="list"] li::before{
+			content: '';
+			width: .4em;
+			height: .4em;
+			border-radius: 50%;
+			background: var(--color-dark);
+			position: absolute;
+			left: .125em;
+			top: .45em;
+
 		}
 
 		ul {
@@ -511,26 +577,52 @@
 			margin-top: .25em;
 		}
 
-		/*
+		
 		ul.rfc{
 			list-style: none;
+			display: flex;
+			justify-content: space-between;
+
 		}
 
-		ul.rfc li{
+		ul.rfc>li{
+			font-size: 1rem;
+			width: calc(50% - .5rem);
 			background: #fff;
 			border: 1px solid var(--color-dark-blue);
+			overflow: hidden;
+			border-radius: .5rem;
+			display: grid;
+			grid-template-columns: auto 1fr;
+			grid-template-rows: auto;
+			align-items: center;
+			line-height: 1;
+			padding: 0;
 		}
 		
-		ul.rfc li:before{
+		ul.rfc>li::before{
 			content: "RFC";
-			font-family: var(--ff-monospace);
 			background: var(--color-dark-blue);
 			color: var(--color-white);
-			padding: .25rem .5rem;
-			margin-inline-end: .5rem;
-			border-radius: .25rem;
+			padding: 1rem;
+			display: inline-block;
+			height: 100%;
+			position: unset;
+			border-radius: unset;
+			width: unset;
 		}
-		*/
+
+		ul.rfc>li>a{
+			padding: 0 1rem;
+			text-decoration: none;
+		}
+
+		ul.rfc>li>a:hover,
+		ul.rfc>li>a:focus{
+			text-decoration: underline;
+		}
+		
+		
 
 		.switch {
 			user-select: none;
@@ -541,7 +633,7 @@
 			padding-inline-end: 2.875em;
 		}
 
-		[dir="rtl"] .slider{
+		[dir="rtl"] .slider {
 			right: auto;
 			left: 0;
 		}
@@ -595,6 +687,49 @@
 			margin-inline-end: 1em;
 		}
 
+
+
+		/*
+		@media (prefers-color-scheme: dark) {
+
+			a.btn {
+				background: var(--color-dark-magenta);
+				color: #fff;
+			}
+
+			.code-example {
+				--bg: #1E1E1E;
+			}
+
+			code span.keyword {
+				color: #C586C0;
+				;
+			}
+
+			code span.default {
+				color: #D4D4D4;
+			}
+
+			code span.string {
+				color: #569CD6;
+			}
+
+			code span.comment {
+				color: #6A9955;
+			}
+
+
+			main>.content {
+				background: var(--color-dark);
+				color: rgba(204, 204, 204);
+			}
+
+			code {
+				background-color: #000;
+			}
+		}
+		*/
+
 		@media (prefers-reduced-motion: reduce) {
 
 			html {
@@ -607,11 +742,29 @@
 
 		}
 
-		a.top{display: none}
+		a.top {
+			display: none
+		}
+
+		a.top svg {
+			max-width: 1.75rem;
+		}
 
 		@media(max-width: 809px) {
 
-			a.top{
+			.search>button {
+				background: transparent;
+				padding: 0;
+				width: var(--navbar-height);
+				height: var(--navbar-height);
+			}
+
+			.search>button>span {
+				display: none;
+
+			}
+
+			a.top {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
@@ -627,20 +780,29 @@
 				box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 			}
 
-			.hide-md{
+			.hide-md {
 				display: none;
 			}
 
 			:root {
 				--inner-padding: 2rem;
-				font-size: 14px;
+				font-size: 12.8px;
+			}
+
+			ul.rfc{
+				display: block;
+				padding: 0 var(--inner-padding);
+			}
+
+			ul.rfc>li{
+				width: 100%;
 			}
 
 			.col+.col {
 				margin-top: 4rem;
 			}
 
-			.hero{
+			.hero {
 				padding: 3rem var(--inner-padding);
 			}
 
@@ -649,24 +811,33 @@
 				display: unset;
 			}
 
+			.hero.outro .cols{
+				display: flex;
+				flex-direction: column-reverse;
+			}
+
+			.hero.outro .col + .col{
+				padding-right: 40%;
+				margin-top: 0;
+			}
+
 			.code-example {
 				--border-radius: 0;
 				--padding: var(--inner-padding);
-
 			}
 
-			.code-example > div > code div.line {
+			.code-example>div>code div.line {
 				padding: 0 var(--inner-padding);
-				
+
 			}
 
 			main>.content {
 				padding: 0;
-				padding-top: 2rem;
-				padding-bottom: 2rem;
+				padding-top: 4rem;
+				padding-bottom: 4rem;
 			}
 
-			nav.navbar > .inner,
+			nav.navbar,
 			main>.content nav,
 			main>.content article>* {
 				padding: 0 var(--inner-padding);
@@ -676,8 +847,21 @@
 				padding: 0;
 			}
 
-			nav.navbar > .inner > ul{
+			nav.navbar>.inner>ul {
+				width: 100%;
+				height: 100vh;
+				padding-left: 30%;
+				top: 0;
+				right: 0;
+				background: linear-gradient(90deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .5) 30%, var(--color-dark-blue) 30.00001%, var(--color-dark-blue) 100%);
+				position: fixed;
+				display: block;
+				z-index: 999;
 				display: none;
+			}
+
+			nav.navbar>.inner>ul li {
+				width: 100%;
 			}
 
 			footer ul li {
@@ -719,15 +903,43 @@
 				</li>
 			</ul>
 			<div class="search">
-				<button>
+				<button popovertarget="search-dialog">
 					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" viewBox="0 0 24 24"
 						fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
 						stroke-linejoin="round">
 						<circle cx="11" cy="11" r="8"></circle>
 						<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
 					</svg>
-					Search docs
+					<span>Search docs</span>
 				</button>
+				<dialog id="search-dialog" popover>
+					<div class="search-modal__header">
+						<div class="search-modal__form">
+							<div class="search-modal__input-icon">
+								<!-- https://feathericons.com search -->
+								<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24"
+									viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+									stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="11" cy="11" r="8"></circle>
+									<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+								</svg>
+							</div>
+							<input type="search" id="search-modal__input" class="search-modal__input"
+								placeholder="Search docs" aria-label="Search docs"
+								data-com.passsecurium.browser.user-edited="yes">
+						</div>
+
+						<button aria-label="Close" class="search-modal__close" popovertarget="search-dialog"
+							popovertargetaction="hide">
+							<!-- https://pictogrammers.com/library/mdi/icon/close/ -->
+							<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" viewBox="0 0 24 24">
+								<path
+									d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z">
+								</path>
+							</svg>
+						</button>
+					</div>
+				</dialog>
 			</div>
 		</div>
 
@@ -766,9 +978,7 @@
 							</li>
 							<li><a href="#Clone-with">Clone with</a></li>
 							<li><a href="#Pipe-operator">Pipe operator</a></li>
-							<li><a href="#New-%23%5B%5CNoDiscard%5D-Attribute">New <code>#[\NoDiscard]</code>
-									Attribute</a>
-							</li>
+							<li><a href="#New-%23%5B%5CNoDiscard%5D-Attribute">New <code>#[\NoDiscard]</code> Attribute</a></li>
 							<li><a href="#Closures-and-First-Class-Callables-in-Constant-Expressions">First Class
 									Callables in
 									constant
@@ -797,23 +1007,25 @@
 						<p>The secure and standards-compliant URI parsing is powered by the <a
 								href="https://uriparser.github.io/">uriparser</a> (RFC 3986) and <a
 								href="https://lexbor.com/">Lexbor</a> (WHATWG URL) libraries.</p>
+
 						<ul role="list" class="rfc">
 							<li><a href="https://wiki.php.net/rfc/url_parsing_api"
 									title="Add RFC 3986 and WHATWG URL compliant API.">Add RFC 3986
 									and WHATWG URL compliant API</a></li>
 						</ul>
-
 						<input type="checkbox" role="switch" class="diff" id="example-new-uri">
 						<div class="code-example">
 							<div class="header">
-								
+								<div>
+								<label class="rfc">RFC</label>
+</div><div>
 								<label for="example-new-uri" class="switch">
-									<span>PHP <&thinsp;8.5</span>
+									<span>PHP &lt;&thinsp;8.5</span>
 											<span class="slider"></span>
-								</label>
+								</label></div>
 							</div>
 							<div>
-							<code>
+								<code>
 									<div class="line new"><span class="keyword">use </span><span class="default">Uri\Rfc3986\Uri</span><span class="keyword">;</span></div>
 									<div class="line"></div>
 									<div class="line old"><span class="default">$components </span><span class="keyword">= </span><span class="default">parse_url</span><span class="keyword">(</span><span class="string">"https://php.net/releases/8.5/en.php"</span><span class="keyword">);</span></div>
@@ -825,26 +1037,27 @@
 								</code>
 							</div>
 						</div>
+						
 					</article>
 					<article>
 						<h2 id="Clone-with">Clone with<a aria-hidden class="skip" href="#Clone-with">#</a></h2>
 						<p>It is now possible to update properties during object cloning by passing an associative array
 							with the updated to the <code>clone()</code> function. This enables straight-forward support
 							of the "with-er" pattern for <code>readonly</code> classes.</p>
-							<ul role="list" class="rfc">
-								<li><a href="https://wiki.php.net/rfc/clone_with_v2">Clone with v2</a></li>
-							</ul>
+						<ul role="list" class="rfc">
+							<li><a href="https://wiki.php.net/rfc/clone_with_v2">Clone with v2</a></li>
+						</ul>
 						<input type="checkbox" role="switch" class="diff" id="example-clone">
 						<div class="code-example">
 							<div class="header">
-								
+
 								<label for="example-clone" class="switch">
-									<span>PHP <&thinsp;8.5</span>
+									<span>PHP &lt;&thinsp;8.5</span>
 											<span class="slider"></span>
 								</label>
 							</div>
 							<div>
-							<code>
+								<code>
 								<div class="line"><span class="default"></span><span class="keyword">final readonly class </span><span class="default">PhpVersion</span></div>
 								<div class="line"><span class="keyword">{</span></div>
 								<div class="line indent-4"><span class="keyword">public function</span> <span class="default">__construct</span><span class="keyword">(</span></div>
@@ -880,20 +1093,22 @@
 
 					<article>
 						<h2 id="Pipe-operator">Pipe operator<a aria-hidden class="skip" href="#Pipe-operator">#</a></h2>
+						<p>The pipe operator allows chaining function calls together without dealing with intermediary variables. That can be especially helpful when replacing many "nested calls" with a chain that can be read forwards, rather than inside-out.</p>
+						<p>Learn more about the backstory of this feature in <a href="https://thephp.foundation/blog/2025/07/11/php-85-adds-pipe-operator/" target="_blank" rel="noopener noreferrer">The PHP Foundation’s blog</a>.</p>            
 						<ul role="list" class="rfc">
-								<li><a href="https://wiki.php.net/rfc/pipe-operator-v3">Pipe operator v3</a></li>
-							</ul>
+							<li><a href="https://wiki.php.net/rfc/pipe-operator-v3">Pipe operator v3</a></li>
+						</ul>
 						<input type="checkbox" role="switch" class="diff" id="example-pipe">
 						<div class="code-example">
 							<div class="header">
-								
+
 								<label for="example-pipe" class="switch">
-									<span>PHP <&thinsp;8.5</span>
+									<span>PHP &lt;&thinsp;8.5</span>
 											<span class="slider"></span>
 								</label>
 							</div>
 							<div>
-							<code>
+								<code>
 									<div class="line"><span class="default">$input </span><span class="keyword">= </span><span class="string">' Some kind of string. '</span><span class="keyword">;</span></div>
 									<div class="line old"><span class="default">$output </span><span class="keyword">= </span><span class="default">strtolower</span><span class="keyword">(</span></div>
 									<div class="line old indent-4"><span class="default">str_replace</span><span class="keyword">([</span><span class="string">'.'</span><span class="keyword">, </span><span class="string">'/'</span><span class="keyword">, </span><span class="string">'…'</span><span class="keyword">], </span><span class="string">''</span><span class="keyword">,</span></div>
@@ -910,14 +1125,14 @@
 									<div class="line"></div>
 									<div class="line"><span class="default">var_dump</span><span class="keyword">(</span><span class="default">$output</span><span class="keyword">);</span></div>
 									<div class="line"><span class="comment">// string(19) "some-kind-of-string"</span></div>
-								</code></div>
+								</code>
+							</div>
 						</div>
 
 					</article>
 
 					<article>
-						<h2 id="New-%23%5B%5CNoDiscard%5D-Attribute"><code>#[\NoDiscard]</code> Attribute <a aria-hidden
-								class="skip" href="#New-%23%5B%5CNoDiscard%5D-Attribute">#</a></h2>
+						<h2 id="New-%23%5B%5CNoDiscard%5D-Attribute"><code>#[\NoDiscard]</code> Attribute<a aria-hidden class="skip" href="#New-%23%5B%5CNoDiscard%5D-Attribute">#</a></h2>
 						<p>By adding the <code>#[\NoDiscard]</code> attribute to a function, PHP will check whether the
 							returned
 							value is
@@ -928,20 +1143,21 @@
 						</p>
 						<p>The associated <code>(void)</code> cast can be used to indicate that a value is intentionally
 							unused.</p>
-							<ul role="list" class="rfc">
-								<li><a href="https://wiki.php.net/rfc/marking_return_value_as_important">Marking return values as important (#[\NoDiscard])</a></li>
-							</ul>
+						<ul role="list" class="rfc">
+							<li><a href="https://wiki.php.net/rfc/marking_return_value_as_important">Marking return
+									values as important (#[\NoDiscard])</a></li>
+						</ul>
 						<input type="checkbox" role="switch" class="diff" id="example-discard">
 						<div class="code-example">
 							<div class="header">
-								
+
 								<label for="example-discard" class="switch">
-									<span>PHP <&thinsp;8.5</span>
+									<span>PHP &lt;&thinsp;8.5</span>
 											<span class="slider"></span>
 								</label>
 							</div>
 							<div>
-							<code>
+								<code>
 							   <div class="line new"><span class="default"></span><span class="keyword">#[</span><span class="default">\NoDiscard</span><span class="keyword">]</span></div>
 							   <div class="line"><span class="keyword">function </span><span class="default">getPhpVersion</span><span class="keyword">(): </span><span class="default">string</span></div>
 							   <div class="line"><span class="keyword">{</span></div>
@@ -952,30 +1168,32 @@
 							   <div class="line new"><span class="comment">// Warning: The return value of function getPhpVersion() should either be used or intentionally ignored by casting it as (void)</span></div>
 							   
 							</code>
-						</div>
+							</div>
 						</div>
 					</article>
 					<article>
 						<h2 id="Closures-and-First-Class-Callables-in-Constant-Expressions">Closures and First Class
 							Callables in Constant Expressions <a aria-hidden class="skip"
 								href="#Closures-and-First-Class-Callables-in-Constant-Expressions">#</a></h2>
-								<ul role="list" class="rfc">
-								<li><a href="https://wiki.php.net/rfc/fcc_in_const_expr">First Class Callables in constant expressions</a>
-								</li>
-								<li><a href="https://wiki.php.net/rfc/closures_in_const_expr">Support Closures in constant expressions</a>
-								</li>
-							</ul>
+						<ul role="list" class="rfc">
+							<li><a href="https://wiki.php.net/rfc/fcc_in_const_expr">First Class Callables in constant
+									expressions</a>
+							</li>
+							<li><a href="https://wiki.php.net/rfc/closures_in_const_expr">Support Closures in constant
+									expressions</a>
+							</li>
+						</ul>
 						<input type="checkbox" role="switch" class="diff" id="example-closures">
 						<div class="code-example">
 							<div class="header">
-								
+
 								<label for="example-closures" class="switch">
-									<span>PHP <&thinsp;8.5</span>
+									<span>PHP &lt;&thinsp;8.5</span>
 											<span class="slider"></span>
 								</label>
 							</div>
 							<div>
-							<code>
+								<code>
 								<div class="line old"><span class="default"></span><span class="keyword">final class </span><span class="default">CalculatorTest </span><span class="keyword">extends </span><span class="default">\PHPUnit\Framework\TestCase</span></div>
 								<div class="line old"><span class="keyword">{</span></div>
 								<div class="line old indent-4"><span class="keyword">#[</span><span class="default">DataProvider</span><span class="keyword">(</span><span class="string">'subtractionProvider'</span><span class="keyword">)]</span></div>
@@ -1023,7 +1241,7 @@
 							   <div class="line new indent-4"><span class="keyword">}</span></div>
 							   <div class="line new"><span class="keyword">}</span></div>
 							</code>
-						</div>
+							</div>
 						</div>
 					</article>
 					<article>
@@ -1034,22 +1252,24 @@
 							<code>curl_share_init_persistent()</code> functions are available.
 						</p>
 						<ul role="list" class="rfc">
-								<li><a href="https://wiki.php.net/rfc/curl_share_persistence">Add persistent curl share handles</a>
-								</li>
-								<li><a href="https://wiki.php.net/rfc/curl_share_persistence_improvement">Persistent curl share handle improvement</a>
-								</li>
-							</ul>
+							<li><a href="https://wiki.php.net/rfc/curl_share_persistence">Add persistent curl share
+									handles</a>
+							</li>
+							<li><a href="https://wiki.php.net/rfc/curl_share_persistence_improvement">Persistent curl
+									share handle improvement</a>
+							</li>
+						</ul>
 						<input type="checkbox" class="diff" id="example-curl" role="switch">
 						<div class="code-example">
 							<div class="header">
-								
+
 								<label for="example-curl" class="switch">
-									<span>PHP <&thinsp;8.5</span>
+									<span>PHP &lt;&thinsp;8.5</span>
 											<span class="slider"></span>
 								</label>
 							</div>
 							<div>
-							<code>
+								<code>
 								<div class="line old"><span class="default">$sh </span><span class="keyword">= </span><span class="default">curl_share_init</span><span class="keyword">();</span></div>
 								<div class="line old"><span class="default">curl_share_setopt</span><span class="keyword">(</span><span class="default">$sh</span><span class="keyword">, </span><span class="default">CURLSHOPT_SHARE</span><span class="keyword">, </span><span class="default">CURL_LOCK_DATA_DNS</span><span class="keyword">);</span></div>
 								<div class="line old"><span class="default">curl_share_setopt</span><span class="keyword">(</span><span class="default">$sh</span><span class="keyword">, </span><span class="default">CURLSHOPT_SHARE</span><span class="keyword">, </span><span class="default">CURL_LOCK_DATA_CONNECT</span><span class="keyword">);</span></div>
@@ -1065,33 +1285,35 @@
 							   <div class="line"><span class="default">curl_setopt</span><span class="keyword">(</span><span class="default">$ch2</span><span class="keyword">, </span><span class="default">CURLOPT_SHARE</span><span class="keyword">, </span><span class="default">$sh</span><span class="keyword">);</span></div>
 							   <div class="line"><span class="default">curl_exec</span><span class="keyword">(</span><span class="default">$ch2</span><span class="keyword">);</span></div>
 							</code>
-						</div>
+							</div>
 						</div>
 
 					</article>
 					<article>
 						<h2 id="New-array_first%28%29-and-array_last%28%29-functions">New <code>array_first()</code> and
 							<code>array_last()</code> functions <a aria-hidden class="skip"
-								href="#New-array_first%28%29-and-array_last%28%29-functions">#</a></h2>
+								href="#New-array_first%28%29-and-array_last%28%29-functions">#</a>
+						</h2>
 						<p>
 							New <code>CurlSharePersistentHandle</code> class, <code>curl_multi_get_handles()</code>,
 							<code>curl_share_init_persistent()</code> functions are available.
 						</p>
 						<ul role="list" class="rfc">
-							<li><a href="https://wiki.php.net/rfc/array_first_last">array_first() and array_last()</a></li>
+							<li><a href="https://wiki.php.net/rfc/array_first_last">array_first() and array_last()</a>
+							</li>
 						</ul>
 
 						<input type="checkbox" class="diff" id="example-array" role="switch">
 						<div class="code-example">
 							<div class="header">
-								
+
 								<label for="example-array" class="switch">
-									<span>PHP <&thinsp;8.5</span>
+									<span>PHP &lt;&thinsp;8.5</span>
 											<span class="slider"></span>
 								</label>
 							</div>
 							<div>
-							<code>
+								<code>
 								   <div class="line"><span class="default">$php </span><span class="keyword">= [</span></div>
 								   <div class="line indent-4"><span class="string">'php-82' </span><span class="keyword">=&gt; [</span><span class="string">'state' </span><span class="keyword">=&gt; </span><span class="string">'security'</span><span class="keyword">, </span><span class="string">'branch' </span><span class="keyword">=&gt; </span><span class="string">'PHP-8.2'</span><span class="keyword">],<br></span></div>
 								   <div class="line indent-4"><span class="string">'php-83' </span><span class="keyword">=&gt; [</span><span class="string">'state' </span><span class="keyword">=&gt; </span><span class="string">'active'</span><span class="keyword">, </span><span class="string">'branch' </span><span class="keyword">=&gt; </span><span class="string">'PHP-8.3'</span><span class="keyword">],<br></span></div>
@@ -1116,7 +1338,7 @@
 								   <div class="line"></div>
 								   <div class="line"><span class="default">var_dump</span><span class="keyword">(</span><span class="default">$upcomingRelease</span><span class="keyword">);</span></div>
 								</code>
-						</div>
+							</div>
 						</div>
 
 
@@ -1166,7 +1388,7 @@
 			</div>
 
 		</section>
-		<section class="hero">
+		<section class="hero outro">
 			<div class="inner cols">
 				<div class="col">
 					<h2 class="php8-h2 center">Better performance, better syntax, improved type safety.</h2>
@@ -1203,12 +1425,17 @@
 				</li>
 			</ul>
 			<label>Language:
-				<select>
+				<select class="lang">
 					<option>English</option>
-					<option>German</option>
 				</select>
 			</label>
-			<a href="#contents" class="top"><span class="sr-only">Go to top.</span>⮝</a>
+			<a href="#contents" class="top"><span class="sr-only">Go to top.</span>
+				<svg xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+					<path fill="#fff"
+						d="M112 208C138.5 208 160 186.5 160 160C160 133.5 138.5 112 112 112C85.5 112 64 133.5 64 160C64 186.5 85.5 208 112 208zM256 128C238.3 128 224 142.3 224 160C224 177.7 238.3 192 256 192L544 192C561.7 192 576 177.7 576 160C576 142.3 561.7 128 544 128L256 128zM256 288C238.3 288 224 302.3 224 320C224 337.7 238.3 352 256 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L256 288zM256 448C238.3 448 224 462.3 224 480C224 497.7 238.3 512 256 512L544 512C561.7 512 576 497.7 576 480C576 462.3 561.7 448 544 448L256 448zM112 528C138.5 528 160 506.5 160 480C160 453.5 138.5 432 112 432C85.5 432 64 453.5 64 480C64 506.5 85.5 528 112 528zM160 320C160 293.5 138.5 272 112 272C85.5 272 64 293.5 64 320C64 346.5 85.5 368 112 368C138.5 368 160 346.5 160 320z" />
+				</svg>
+			</a>
 		</div>
 	</footer>
 </body>
