@@ -334,10 +334,8 @@
 		}
 
 		.code-example>.header {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
 			background: var(--bg);
-			padding: 1rem;
+			padding: 1rem var(--inner-padding);
 			text-align: right;
 			border-radius: var(--border-radius) var(--border-radius) 0 0;
 		}
@@ -785,7 +783,7 @@
 			}
 
 			:root {
-				--inner-padding: 2rem;
+				--inner-padding: 1rem;
 				font-size: 12.8px;
 			}
 
@@ -1016,13 +1014,11 @@
 						<input type="checkbox" role="switch" class="diff" id="example-new-uri">
 						<div class="code-example">
 							<div class="header">
-								<div>
-								<label class="rfc">RFC</label>
-</div><div>
+								
 								<label for="example-new-uri" class="switch">
 									<span>PHP &lt;&thinsp;8.5</span>
 											<span class="slider"></span>
-								</label></div>
+								</label>
 							</div>
 							<div>
 								<code>
