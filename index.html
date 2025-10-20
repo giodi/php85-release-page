@@ -355,17 +355,18 @@
 
 
 		.code-example>div {
+			direction: ltr;
 			background: var(--bg);
 			overflow-x: scroll;
 			border-radius: 0 0 var(--border-radius) var(--border-radius);
 		}
 
 		.code-example>div>code {
+			
 			background: var(--bg);
 			padding: 0 0 var(--padding) 0;
 			display: block;
 			min-width: max-content;
-			overflow-x: scroll;
 			font-size: 1rem;
 		}
 
@@ -566,6 +567,11 @@
 
 		}
 
+		html[dir="rtl"] ul[role="list"] li::before{
+			left: unset;
+			right: .125em;
+		}
+
 		ul {
 			padding: 0;
 		}
@@ -632,8 +638,8 @@
 		}
 
 		[dir="rtl"] .slider {
-			right: auto;
-			left: 0;
+			left: auto;
+			right: 0;
 		}
 
 		.slider {
@@ -776,6 +782,11 @@
 				border-radius: 50%;
 				text-decoration: none;
 				box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+			}
+
+			html[dir="rtl"] a.top{
+				right: auto;
+				left: 1rem;
 			}
 
 			.hide-md {
