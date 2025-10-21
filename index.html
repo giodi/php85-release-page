@@ -20,9 +20,7 @@
 			--wrapper-width: 75em;
 		}
 
-
-
-		:target {
+		::target {
 			scroll-margin-block: 1rem;
 		}
 
@@ -42,6 +40,16 @@
 			-webkit-text-size-adjust: none;
 			text-size-adjust: none;
 			scroll-behavior: smooth;
+		}
+
+		body {
+			color: #000;
+			background: var(--color-gray);
+			min-height: 100vh;
+			line-height: 1.618;
+			font-family: var(--ff-sans-serif);
+			padding: 0;
+			margin: 0;
 		}
 
 		body,
@@ -67,16 +75,6 @@
 		code,
 		p {
 			font-size: 1.25rem;
-		}
-
-		body {
-			color: #000;
-			background: var(--color-gray);
-			min-height: 100vh;
-			line-height: 1.618;
-			font-family: var(--ff-sans-serif);
-			padding: 0;
-			margin: 0;
 		}
 
 		h1,
@@ -127,6 +125,15 @@
 			text-wrap: nowrap;
 		}
 
+		h2>code,
+		a>code,
+		li>code,
+		p>code {
+			border-radius: .125em;
+			background: rgba(39, 40, 44, 0.05);
+			padding: .125em;
+		}
+
 		img,
 		picture {
 			max-width: 100%;
@@ -150,7 +157,7 @@
 
 		}
 
-		select.lang{
+		select.lang {
 			border: 1px solid #fff;
 			background: var(--color-gray);
 			margin-inline-start: .25rem;
@@ -179,18 +186,18 @@
 			padding-top: .75rem;
 		}
 
-		nav.toc li.active {
-			font-weight: 700;
+		nav.toc a:hover,
+		nav.toc a:focus {
+			text-decoration: underline;
+
 		}
 
 		nav.toc ol>li:first-child>a {
 			padding-top: 0;
 		}
 
-		nav.toc a:hover,
-		nav.toc a:focus {
-			text-decoration: underline;
-
+		nav.toc li.active {
+			font-weight: 700;
 		}
 
 		article+article {
@@ -201,14 +208,7 @@
 			margin-top: 1em;
 		}
 
-		h2>code,
-		a>code,
-		li>code,
-		p>code {
-			border-radius: .125em;
-			background: rgba(39, 40, 44, 0.05);
-			padding: .125em;
-		}
+
 
 		main {
 			width: 100%;
@@ -243,8 +243,6 @@
 			font-weight: 200;
 			font-size: 1.5rem;
 		}
-
-		
 
 		.content .cols {
 			display: grid;
@@ -289,16 +287,16 @@
 			box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 		}
 
-		a{
+		a {
 			text-underline-offset: .375rem;
 		}
 
-		footer a{
+		footer a {
 			text-decoration: none;
 		}
 
 		footer a:focus,
-		footer a:hover{
+		footer a:hover {
 			text-decoration: underline;
 		}
 
@@ -335,24 +333,22 @@
 
 		.code-example>.header {
 			background: var(--bg);
-			padding: 1rem var(--inner-padding);
+			padding: 1rem var(--padding);
 			text-align: right;
 			border-radius: var(--border-radius) var(--border-radius) 0 0;
 		}
 
-		.code-example>.header>div:first-child{
+		.code-example>.header>div:first-child {
 			text-align: left;
 		}
 
-		.code-example>.header>div:first-child label{
+		.code-example>.header>div:first-child label {
 
 			background: var(--color-dark-blue);
 			color: var(--color-white);
 			padding: .5rem;
 
 		}
-
-
 
 		.code-example>div {
 			direction: ltr;
@@ -362,7 +358,6 @@
 		}
 
 		.code-example>div>code {
-			
 			background: var(--bg);
 			padding: 0 0 var(--padding) 0;
 			display: block;
@@ -373,7 +368,7 @@
 		.code-example>div>code div.line {
 			display: block;
 			width: 100%;
-			padding: 0 .75rem;
+			padding: 0 var(--padding);
 			text-wrap: nowrap;
 		}
 
@@ -465,8 +460,8 @@
 
 		nav.navbar>.inner {
 			display: grid;
-			grid-template-columns: auto auto auto;
-			
+			gap: 1rem;
+			grid-template-columns: minmax(5rem, 5rem) 1fr minmax(8.75rem, 18.75rem);
 		}
 
 		nav.navbar>.inner>.logo {
@@ -480,7 +475,7 @@
 			max-height: 2.5rem;
 		}
 
-		nav.navbar>.inner>ul {
+		nav.navbar>.inner>ul.menu {
 			list-style: none;
 			display: flex;
 			margin: 0;
@@ -549,13 +544,13 @@
 			list-style: none;
 		}
 
-		ul[role="list"] li{
+		ul[role="list"] li {
 			position: relative;
 			padding-inline-start: 1em;
 
 		}
 
-		ul[role="list"] li::before{
+		ul[role="list"] li::before {
 			content: '';
 			width: .4em;
 			height: .4em;
@@ -567,7 +562,7 @@
 
 		}
 
-		html[dir="rtl"] ul[role="list"] li::before{
+		html[dir="rtl"] ul[role="list"] li::before {
 			left: unset;
 			right: .125em;
 		}
@@ -581,15 +576,15 @@
 			margin-top: .25em;
 		}
 
-		
-		ul.rfc{
+
+		ul.rfc {
 			list-style: none;
 			display: flex;
 			justify-content: space-between;
 
 		}
 
-		ul.rfc>li{
+		ul.rfc>li {
 			font-size: 1rem;
 			width: calc(50% - .5rem);
 			background: #fff;
@@ -603,8 +598,8 @@
 			line-height: 1;
 			padding: 0;
 		}
-		
-		ul.rfc>li::before{
+
+		ul.rfc>li::before {
 			content: "RFC";
 			background: var(--color-dark-blue);
 			color: var(--color-white);
@@ -616,17 +611,15 @@
 			width: unset;
 		}
 
-		ul.rfc>li>a{
+		ul.rfc>li>a {
 			padding: 0 1rem;
 			text-decoration: none;
 		}
 
 		ul.rfc>li>a:hover,
-		ul.rfc>li>a:focus{
+		ul.rfc>li>a:focus {
 			text-decoration: underline;
 		}
-		
-		
 
 		.switch {
 			user-select: none;
@@ -650,7 +643,7 @@
 			width: 2.375em;
 			height: 1.375em;
 			background: rgb(182, 182, 182);
-			transition: .4s;
+			transition: .1s;
 			border-radius: 1em;
 		}
 
@@ -671,7 +664,7 @@
 		}
 
 		input[type="checkbox"].diff:checked+.code-example>.header>label>.slider:before {
-			transform: translateX(1rem);
+			transform: translateX(1em);
 		}
 
 		footer {
@@ -691,7 +684,9 @@
 			margin-inline-end: 1em;
 		}
 
-
+		.mobile-only{
+			display: none;
+		}
 
 		/*
 		@media (prefers-color-scheme: dark) {
@@ -734,17 +729,7 @@
 		}
 		*/
 
-		@media (prefers-reduced-motion: reduce) {
-
-			html {
-				scroll-behavior: auto;
-			}
-
-			* {
-				transition: none;
-			}
-
-		}
+		
 
 		a.top {
 			display: none
@@ -754,9 +739,43 @@
 			max-width: 1.75rem;
 		}
 
-		@media(max-width: 809px) {
+		.mob-menu{
+			color: hsl(222, 80%, 87%);
+			cursor: pointer;
+			background-color: transparent;
+			border: 0;
+			outline: 0;
+		}
+
+		@media(max-width: 62.5em) {
+
+			.show-1000{
+				display: inline-flex;
+			}
+
+			nav.navbar > .inner{
+				grid-template-columns: 1fr repeat(2, 2rem);
+				grid-template-areas: "logo search menu";
+			}
+
+			nav.navbar .logo{
+				grid-area: logo;
+			}
+
+			nav.navbar .mob-menu{
+				grid-area: menu;
+			}
+
+			nav.navbar .search{
+				grid-area: search;
+			}
+
+			nav.navbar>.inner>ul.menu{
+				display: none;
+			}
 
 			.search>button {
+				border: none;
 				background: transparent;
 				padding: 0;
 				width: var(--navbar-height);
@@ -767,6 +786,20 @@
 				display: none;
 
 			}
+			
+
+		}
+
+		@media(max-width: 809px) {
+
+			:root {
+				--inner-padding: 1rem;
+				font-size: 12.8px;
+			}
+
+			
+
+			
 
 			a.top {
 				display: inline-flex;
@@ -784,7 +817,7 @@
 				box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 			}
 
-			html[dir="rtl"] a.top{
+			html[dir="rtl"] a.top {
 				right: auto;
 				left: 1rem;
 			}
@@ -793,21 +826,16 @@
 				display: none;
 			}
 
-			:root {
-				--inner-padding: 1rem;
-				font-size: 12.8px;
-			}
-
-			ul.rfc{
+			ul.rfc {
 				display: block;
 				padding: 0 var(--inner-padding);
 			}
 
-			ul.rfc>li{
+			ul.rfc>li {
 				width: 100%;
 			}
 
-			.col+.col {
+			.col + .col {
 				margin-top: 4rem;
 			}
 
@@ -820,12 +848,12 @@
 				display: unset;
 			}
 
-			.hero.outro .cols{
+			.hero.outro .cols {
 				display: flex;
 				flex-direction: column-reverse;
 			}
 
-			.hero.outro .col + .col{
+			.hero.outro .col+.col {
 				padding-right: 40%;
 				margin-top: 0;
 			}
@@ -856,7 +884,7 @@
 				padding: 0;
 			}
 
-			nav.navbar>.inner>ul {
+			nav.navbar>.inner>ul.menu {
 				width: 100%;
 				height: 100vh;
 				padding-left: 30%;
@@ -879,6 +907,17 @@
 			}
 
 		}
+
+		@media (prefers-reduced-motion: reduce) {
+
+			html {
+				scroll-behavior: auto;
+			}
+
+			* {
+				transition: none;
+			}
+		}
 	</style>
 </head>
 
@@ -888,7 +927,7 @@
 			<a href="https://www.php.net" aria-label="PHP Home" class="logo">
 				<img src="php-logo-white.svg" alt="PHP Logo">
 			</a>
-			<ul>
+			<ul class="menu">
 				<li>
 					<a href="https://web-php-pr-1454.preview.thephp.foundation/downloads.php">
 						Downloads </a>
@@ -911,8 +950,13 @@
 					</strong>
 				</li>
 			</ul>
+			<button aria-label="Menu" class="mob-menu mobile-only show-1000">
+		    	<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" viewBox="0 0 24 24" fill="currentColor">
+		  			<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path>
+				</svg>      
+			</button>
 			<div class="search">
-				<button popovertarget="search-dialog">
+				<button>
 					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" viewBox="0 0 24 24"
 						fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
 						stroke-linejoin="round">
@@ -987,7 +1031,8 @@
 							</li>
 							<li><a href="#Clone-with">Clone with</a></li>
 							<li><a href="#Pipe-operator">Pipe operator</a></li>
-							<li><a href="#New-%23%5B%5CNoDiscard%5D-Attribute">New <code>#[\NoDiscard]</code> Attribute</a></li>
+							<li><a href="#New-%23%5B%5CNoDiscard%5D-Attribute">New <code>#[\NoDiscard]</code>
+									Attribute</a></li>
 							<li><a href="#Closures-and-First-Class-Callables-in-Constant-Expressions">First Class
 									Callables in
 									constant
@@ -1025,10 +1070,10 @@
 						<input type="checkbox" role="switch" class="diff" id="example-new-uri">
 						<div class="code-example">
 							<div class="header">
-								
+
 								<label for="example-new-uri" class="switch">
 									<span>PHP &lt;&thinsp;8.5</span>
-											<span class="slider"></span>
+									<span class="slider"></span>
 								</label>
 							</div>
 							<div>
@@ -1044,7 +1089,7 @@
 								</code>
 							</div>
 						</div>
-						
+
 					</article>
 					<article>
 						<h2 id="Clone-with">Clone with<a aria-hidden class="skip" href="#Clone-with">#</a></h2>
@@ -1060,7 +1105,7 @@
 
 								<label for="example-clone" class="switch">
 									<span>PHP &lt;&thinsp;8.5</span>
-											<span class="slider"></span>
+									<span class="slider"></span>
 								</label>
 							</div>
 							<div>
@@ -1100,8 +1145,12 @@
 
 					<article>
 						<h2 id="Pipe-operator">Pipe operator<a aria-hidden class="skip" href="#Pipe-operator">#</a></h2>
-						<p>The pipe operator allows chaining function calls together without dealing with intermediary variables. That can be especially helpful when replacing many "nested calls" with a chain that can be read forwards, rather than inside-out.</p>
-						<p>Learn more about the backstory of this feature in <a href="https://thephp.foundation/blog/2025/07/11/php-85-adds-pipe-operator/" target="_blank" rel="noopener noreferrer">The PHP Foundation’s blog</a>.</p>            
+						<p>The pipe operator allows chaining function calls together without dealing with intermediary
+							variables. That can be especially helpful when replacing many "nested calls" with a chain
+							that can be read forwards, rather than inside-out.</p>
+						<p>Learn more about the backstory of this feature in <a
+								href="https://thephp.foundation/blog/2025/07/11/php-85-adds-pipe-operator/"
+								target="_blank" rel="noopener noreferrer">The PHP Foundation’s blog</a>.</p>
 						<ul role="list" class="rfc">
 							<li><a href="https://wiki.php.net/rfc/pipe-operator-v3">Pipe operator v3</a></li>
 						</ul>
@@ -1111,7 +1160,7 @@
 
 								<label for="example-pipe" class="switch">
 									<span>PHP &lt;&thinsp;8.5</span>
-											<span class="slider"></span>
+									<span class="slider"></span>
 								</label>
 							</div>
 							<div>
@@ -1139,7 +1188,8 @@
 					</article>
 
 					<article>
-						<h2 id="New-%23%5B%5CNoDiscard%5D-Attribute"><code>#[\NoDiscard]</code> Attribute<a aria-hidden class="skip" href="#New-%23%5B%5CNoDiscard%5D-Attribute">#</a></h2>
+						<h2 id="New-%23%5B%5CNoDiscard%5D-Attribute"><code>#[\NoDiscard]</code> Attribute<a aria-hidden
+								class="skip" href="#New-%23%5B%5CNoDiscard%5D-Attribute">#</a></h2>
 						<p>By adding the <code>#[\NoDiscard]</code> attribute to a function, PHP will check whether the
 							returned
 							value is
@@ -1160,7 +1210,7 @@
 
 								<label for="example-discard" class="switch">
 									<span>PHP &lt;&thinsp;8.5</span>
-											<span class="slider"></span>
+									<span class="slider"></span>
 								</label>
 							</div>
 							<div>
@@ -1196,7 +1246,7 @@
 
 								<label for="example-closures" class="switch">
 									<span>PHP &lt;&thinsp;8.5</span>
-											<span class="slider"></span>
+									<span class="slider"></span>
 								</label>
 							</div>
 							<div>
@@ -1272,7 +1322,7 @@
 
 								<label for="example-curl" class="switch">
 									<span>PHP &lt;&thinsp;8.5</span>
-											<span class="slider"></span>
+									<span class="slider"></span>
 								</label>
 							</div>
 							<div>
@@ -1316,7 +1366,7 @@
 
 								<label for="example-array" class="switch">
 									<span>PHP &lt;&thinsp;8.5</span>
-											<span class="slider"></span>
+									<span class="slider"></span>
 								</label>
 							</div>
 							<div>
