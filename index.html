@@ -20,11 +20,11 @@
 			--wrapper-width: 75em;
 		}
 
-		::target {
+		:target {
 			scroll-margin-block: 1rem;
 		}
 
-		::selection {
+		:selection {
 			color: var(--color-white);
 			background-color: var(--color-dark-magenta);
 		}
@@ -109,6 +109,7 @@
 		}
 
 		h3 {
+			margin-top: 1em;
 			font-size: 1.3572rem;
 		}
 
@@ -204,11 +205,11 @@
 			margin-top: 4rem;
 		}
 
-		p+p {
-			margin-top: 1em;
+		p+p,
+		p+ul,
+		ul+.diff+.code-example {
+			margin-top: 1rem;
 		}
-
-
 
 		main {
 			width: 100%;
@@ -224,7 +225,7 @@
 			background: var(--color-dark-blue);
 			background: linear-gradient(90deg, var(--color-dark-blue) 0%, rgba(83, 96, 155, 1) 75%, var(--color-dark-blue) 100%);
 			color: var(--color-white);
-			padding: 4rem var(--inner-padding);
+			padding: 6rem var(--inner-padding);
 		}
 
 		.hero .inner.cols {
@@ -276,7 +277,7 @@
 			display: inline-block;
 			text-decoration: none;
 			border-radius: .5em;
-			padding: .5rem 1rem;
+			padding: 1rem;
 			background: #fff;
 			color: #000;
 			--tw-inset-shadow: 0 0 #000;
@@ -310,6 +311,11 @@
 			opacity: 0;
 		}
 
+		h2>a.skip img {
+			margin-inline-start: .5rem;
+			display: inline;
+		}
+
 		h2:hover>a.skip,
 		h2>a.skip:focus {
 			opacity: 1;
@@ -318,7 +324,9 @@
 		h1+p,
 		h1+ul,
 		h2+p,
-		h2+ul {
+		h2+ul,
+		h3+p,
+		h3+ul {
 			margin-top: .5rem;
 		}
 
@@ -567,6 +575,11 @@
 			right: .125em;
 		}
 
+		p.small{
+			font-size: 1rem;
+			margin-top: .5rem;
+		}
+
 		ul {
 			padding: 0;
 		}
@@ -585,34 +598,35 @@
 		}
 
 		ul.rfc>li {
+			box-shadow: 0 0 0 1px rgba(0, 0, 0, .15);
 			font-size: 1rem;
 			width: calc(50% - .5rem);
 			background: #fff;
-			border: 1px solid var(--color-dark-blue);
 			overflow: hidden;
 			border-radius: .5rem;
 			display: grid;
 			grid-template-columns: auto 1fr;
 			grid-template-rows: auto;
 			align-items: center;
-			line-height: 1;
 			padding: 0;
 		}
 
+
 		ul.rfc>li::before {
-			content: "RFC";
-			background: var(--color-dark-blue);
+			content: unset;
+			/*background: var(--color-dark-blue);
 			color: var(--color-white);
 			padding: 1rem;
 			display: inline-block;
 			height: 100%;
 			position: unset;
 			border-radius: unset;
-			width: unset;
+			width: unset;*/
 		}
 
+
 		ul.rfc>li>a {
-			padding: 0 1rem;
+			padding: 1rem 1rem .75rem;
 			text-decoration: none;
 		}
 
@@ -684,7 +698,7 @@
 			margin-inline-end: 1em;
 		}
 
-		.mobile-only{
+		.mobile-only {
 			display: none;
 		}
 
@@ -701,20 +715,31 @@
 			}
 
 			code span.keyword {
-				color: #C586C0;
-				;
+				color: #6A9955;
 			}
 
 			code span.default {
-				color: #D4D4D4;
+				color: #C586C0;
 			}
 
 			code span.string {
-				color: #569CD6;
+				color: #CE9178;
 			}
 
 			code span.comment {
-				color: #6A9955;
+				color: #569CD6;
+			}
+
+			.code-example>div>code div.line.old {
+				background: #ADD6FF26;
+			}
+
+			input[type="checkbox"].diff:checked+.code-example>div>code div.line.new {
+				background: #ADD6FF26;
+			}
+
+			ul[role="list"] li::before {
+				background: rgba(204, 204, 204);
 			}
 
 
@@ -726,10 +751,17 @@
 			code {
 				background-color: #000;
 			}
-		}
-		*/
 
-		
+			h2>code,
+			a>code,
+			li>code,
+			p>code {
+				background: rgba(209, 209, 209, 0.1)
+			}
+		}
+
+*/
+
 
 		a.top {
 			display: none
@@ -739,7 +771,7 @@
 			max-width: 1.75rem;
 		}
 
-		.mob-menu{
+		.mob-menu {
 			color: hsl(222, 80%, 87%);
 			cursor: pointer;
 			background-color: transparent;
@@ -749,28 +781,32 @@
 
 		@media(max-width: 62.5em) {
 
-			.show-1000{
+			.show-1000 {
 				display: inline-flex;
 			}
 
-			nav.navbar > .inner{
+			nav.navbar{
+				--navbar-height: 5rem;
+			}
+
+			nav.navbar>.inner {
 				grid-template-columns: 1fr repeat(2, 2rem);
 				grid-template-areas: "logo search menu";
 			}
 
-			nav.navbar .logo{
+			nav.navbar .logo {
 				grid-area: logo;
 			}
 
-			nav.navbar .mob-menu{
+			nav.navbar .mob-menu {
 				grid-area: menu;
 			}
 
-			nav.navbar .search{
+			nav.navbar .search {
 				grid-area: search;
 			}
 
-			nav.navbar>.inner>ul.menu{
+			nav.navbar>.inner>ul.menu {
 				display: none;
 			}
 
@@ -786,20 +822,16 @@
 				display: none;
 
 			}
-			
+
 
 		}
 
 		@media(max-width: 809px) {
 
 			:root {
-				--inner-padding: 1rem;
+				--inner-padding: 2rem;
 				font-size: 12.8px;
 			}
-
-			
-
-			
 
 			a.top {
 				display: inline-flex;
@@ -835,7 +867,7 @@
 				width: 100%;
 			}
 
-			.col + .col {
+			.col+.col {
 				margin-top: 4rem;
 			}
 
@@ -859,6 +891,7 @@
 			}
 
 			.code-example {
+				margin-top: 1rem;
 				--border-radius: 0;
 				--padding: var(--inner-padding);
 			}
@@ -951,9 +984,10 @@
 				</li>
 			</ul>
 			<button aria-label="Menu" class="mob-menu mobile-only show-1000">
-		    	<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" viewBox="0 0 24 24" fill="currentColor">
-		  			<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path>
-				</svg>      
+				<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" viewBox="0 0 24 24"
+					fill="currentColor">
+					<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path>
+				</svg>
 			</button>
 			<div class="search">
 				<button>
@@ -1054,19 +1088,13 @@
 				<div class="col">
 					<article>
 						<h2 id="New-URI-Extension">New URI Extension<a aria-hidden class="skip"
-								href="#New-URI-Extension">#</a>
+								href="#New-URI-Extension"><img src="anchor.svg" alt="Anchor icon"></a>
 						</h2>
 						<p>As an always-available part of PHP's standard library the new URI extension provides APIs to
 							parse and modify URIs and URLs according to the RFC 3986 and the WHATWG URL standards.</p>
 						<p>The secure and standards-compliant URI parsing is powered by the <a
 								href="https://uriparser.github.io/">uriparser</a> (RFC 3986) and <a
 								href="https://lexbor.com/">Lexbor</a> (WHATWG URL) libraries.</p>
-
-						<ul role="list" class="rfc">
-							<li><a href="https://wiki.php.net/rfc/url_parsing_api"
-									title="Add RFC 3986 and WHATWG URL compliant API.">Add RFC 3986
-									and WHATWG URL compliant API</a></li>
-						</ul>
 						<input type="checkbox" role="switch" class="diff" id="example-new-uri">
 						<div class="code-example">
 							<div class="header">
@@ -1089,16 +1117,19 @@
 								</code>
 							</div>
 						</div>
+						<p class="small">Related RFC: <a href="https://wiki.php.net/rfc/url_parsing_api"
+								title="Add RFC 3986 and WHATWG URL compliant API.">Add RFC 3986
+								and WHATWG URL compliant API</a></p>
+
 
 					</article>
 					<article>
-						<h2 id="Clone-with">Clone with<a aria-hidden class="skip" href="#Clone-with">#</a></h2>
+						<h2 id="Clone-with">Clone with<a aria-hidden class="skip" href="#Clone-with"><img
+									src="anchor.svg" alt="Anchor icon"></a></h2>
 						<p>It is now possible to update properties during object cloning by passing an associative array
 							with the updated to the <code>clone()</code> function. This enables straight-forward support
 							of the "with-er" pattern for <code>readonly</code> classes.</p>
-						<ul role="list" class="rfc">
-							<li><a href="https://wiki.php.net/rfc/clone_with_v2">Clone with v2</a></li>
-						</ul>
+
 						<input type="checkbox" role="switch" class="diff" id="example-clone">
 						<div class="code-example">
 							<div class="header">
@@ -1141,19 +1172,19 @@
 								</code>
 							</div>
 						</div>
+						<p class="small">Related RFC: <a href="https://wiki.php.net/rfc/clone_with_v2">Clone with v2</a>
+						</p>
 					</article>
 
 					<article>
-						<h2 id="Pipe-operator">Pipe operator<a aria-hidden class="skip" href="#Pipe-operator">#</a></h2>
+						<h2 id="Pipe-operator">Pipe operator<a aria-hidden class="skip" href="#Pipe-operator"><img
+									src="anchor.svg" alt="Anchor icon"></a></h2>
 						<p>The pipe operator allows chaining function calls together without dealing with intermediary
 							variables. That can be especially helpful when replacing many "nested calls" with a chain
 							that can be read forwards, rather than inside-out.</p>
 						<p>Learn more about the backstory of this feature in <a
 								href="https://thephp.foundation/blog/2025/07/11/php-85-adds-pipe-operator/"
 								target="_blank" rel="noopener noreferrer">The PHP Foundation’s blog</a>.</p>
-						<ul role="list" class="rfc">
-							<li><a href="https://wiki.php.net/rfc/pipe-operator-v3">Pipe operator v3</a></li>
-						</ul>
 						<input type="checkbox" role="switch" class="diff" id="example-pipe">
 						<div class="code-example">
 							<div class="header">
@@ -1184,12 +1215,15 @@
 								</code>
 							</div>
 						</div>
+						<p class="small">Related RFC: <a href="https://wiki.php.net/rfc/pipe-operator-v3">Pipe operator
+								v3</a></p>
 
 					</article>
 
 					<article>
 						<h2 id="New-%23%5B%5CNoDiscard%5D-Attribute"><code>#[\NoDiscard]</code> Attribute<a aria-hidden
-								class="skip" href="#New-%23%5B%5CNoDiscard%5D-Attribute">#</a></h2>
+								class="skip" href="#New-%23%5B%5CNoDiscard%5D-Attribute"><img src="anchor.svg"
+									alt="Anchor icon"></a></h2>
 						<p>By adding the <code>#[\NoDiscard]</code> attribute to a function, PHP will check whether the
 							returned
 							value is
@@ -1200,10 +1234,7 @@
 						</p>
 						<p>The associated <code>(void)</code> cast can be used to indicate that a value is intentionally
 							unused.</p>
-						<ul role="list" class="rfc">
-							<li><a href="https://wiki.php.net/rfc/marking_return_value_as_important">Marking return
-									values as important (#[\NoDiscard])</a></li>
-						</ul>
+
 						<input type="checkbox" role="switch" class="diff" id="example-discard">
 						<div class="code-example">
 							<div class="header">
@@ -1227,19 +1258,18 @@
 							</code>
 							</div>
 						</div>
+						<p class="small">Related RFC: <a
+								href="https://wiki.php.net/rfc/marking_return_value_as_important">Marking
+								return
+								values as important (#[\NoDiscard])</a></p>
+
 					</article>
 					<article>
 						<h2 id="Closures-and-First-Class-Callables-in-Constant-Expressions">Closures and First Class
 							Callables in Constant Expressions <a aria-hidden class="skip"
-								href="#Closures-and-First-Class-Callables-in-Constant-Expressions">#</a></h2>
-						<ul role="list" class="rfc">
-							<li><a href="https://wiki.php.net/rfc/fcc_in_const_expr">First Class Callables in constant
-									expressions</a>
-							</li>
-							<li><a href="https://wiki.php.net/rfc/closures_in_const_expr">Support Closures in constant
-									expressions</a>
-							</li>
-						</ul>
+								href="#Closures-and-First-Class-Callables-in-Constant-Expressions"><img src="anchor.svg"
+									alt="Anchor icon"></a></h2>
+
 						<input type="checkbox" role="switch" class="diff" id="example-closures">
 						<div class="code-example">
 							<div class="header">
@@ -1300,22 +1330,20 @@
 							</code>
 							</div>
 						</div>
+						<p class="small">Related RFC: <a href="https://wiki.php.net/rfc/fcc_in_const_expr">First Class
+								Callables in constant
+								expressions</a>, <a href="https://wiki.php.net/rfc/closures_in_const_expr">Support
+								Closures in constant
+								expressions</a></p>
 					</article>
 					<article>
 						<h2 id="Persistent-cURL-Share-Handles">Persistent cURL Share Handles <a aria-hidden class="skip"
-								href="#Persistent-cURL-Share-Handles">#</a></h2>
+								href="#Persistent-cURL-Share-Handles"><img src="anchor.svg" alt="Anchor icon"></a></h2>
 						<p>
 							New <code>CurlSharePersistentHandle</code> class, <code>curl_multi_get_handles()</code>,
 							<code>curl_share_init_persistent()</code> functions are available.
 						</p>
-						<ul role="list" class="rfc">
-							<li><a href="https://wiki.php.net/rfc/curl_share_persistence">Add persistent curl share
-									handles</a>
-							</li>
-							<li><a href="https://wiki.php.net/rfc/curl_share_persistence_improvement">Persistent curl
-									share handle improvement</a>
-							</li>
-						</ul>
+
 						<input type="checkbox" class="diff" id="example-curl" role="switch">
 						<div class="code-example">
 							<div class="header">
@@ -1344,21 +1372,25 @@
 							</code>
 							</div>
 						</div>
+						<p class="small">Related RFC: <a href="https://wiki.php.net/rfc/curl_share_persistence">Add
+								persistent curl
+								share
+								handles</a>, <a
+								href="https://wiki.php.net/rfc/curl_share_persistence_improvement">Persistent curl
+								share handle improvement</a></p>
 
 					</article>
 					<article>
 						<h2 id="New-array_first%28%29-and-array_last%28%29-functions">New <code>array_first()</code> and
 							<code>array_last()</code> functions <a aria-hidden class="skip"
-								href="#New-array_first%28%29-and-array_last%28%29-functions">#</a>
+								href="#New-array_first%28%29-and-array_last%28%29-functions"><img src="anchor.svg"
+									alt="Anchor icon"></a>
 						</h2>
 						<p>
 							New <code>CurlSharePersistentHandle</code> class, <code>curl_multi_get_handles()</code>,
 							<code>curl_share_init_persistent()</code> functions are available.
 						</p>
-						<ul role="list" class="rfc">
-							<li><a href="https://wiki.php.net/rfc/array_first_last">array_first() and array_last()</a>
-							</li>
-						</ul>
+
 
 						<input type="checkbox" class="diff" id="example-array" role="switch">
 						<div class="code-example">
@@ -1397,12 +1429,14 @@
 								</code>
 							</div>
 						</div>
-
-
+						<p class="small">Related RFC: <a href="https://wiki.php.net/rfc/array_first_last">array_first()
+								and array_last()</a>
+						</p>
 					</article>
 					<article>
 						<h2 id="New-Classes-Interfaces-and-Functions">New Classes, Interfaces, and Functions <a
-								aria-hidden class="skip" href="#New-Classes-Interfaces-and-Functions">#</a></h2>
+								aria-hidden class="skip" href="#New-Classes-Interfaces-and-Functions"><img
+									src="anchor.svg" alt="Anchor icon"></a></h2>
 						<ul role="list">
 							<li>Property Promotion is now available for <code>final</code></li>
 							<li>Attributes are now available for constants</li>
@@ -1438,7 +1472,8 @@
 					<article>
 						<h2 id="Deprecations-and-backward-compatibility-breaks">Deprecations and backward compatibility
 							breaks <a aria-hidden class="skip"
-								href="#Deprecations-and-backward-compatibility-breaks">#</a></h2>
+								href="#Deprecations-and-backward-compatibility-breaks"><img src="anchor.svg"
+									alt="Anchor icon"></a></h2>
 						<p>There are no deprecations or compatibility breaks.</p>
 					</article>
 				</div>
